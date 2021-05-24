@@ -45,4 +45,12 @@ kubectl get nodes
 kubectl get pods --field-selector status.phase!=Running -A
 ```
 
+## Write down the cluster CIDR
+
+For deploying `cilium` we need to write down or store the `cluster CIDR`. Use the command below for extracting this value.
+
+```
+gcloud container clusters describe "playground" --zone "us-central1" --format 'value(clusterIpv4Cidr)'
+```
+
 You are now ready to deploy some awesome applications to demostrate !

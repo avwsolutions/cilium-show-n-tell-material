@@ -1,0 +1,13 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "block-recommendations"
+spec:
+  endpointSelector:
+    matchLabels:
+      app: recommendationservice
+  egress:
+    - toPorts:
+      - ports:
+        - port: "8080"
+          protocol: TCP
