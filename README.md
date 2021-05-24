@@ -40,7 +40,7 @@ First we will start with requesting the component status with `cilium status --w
 
 ### Deploy demo application
 
-For this demostration we use the `Online Boutique`, which is a well-known `microservices-demo` application built for Google Cloud. Clone the repository and apply the `manifests`.
+For this demostration we use the [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo), which is a well-known `microservices-demo` application built for Google Cloud Platform. Clone the repository and apply the `manifests`.
 
 ```
 git clone git@github.com:GoogleCloudPlatform/microservices-demo.git
