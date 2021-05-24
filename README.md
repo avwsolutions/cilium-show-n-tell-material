@@ -2,6 +2,8 @@
 ## Prerequisites
 
 - Use the Cluster CIDR that we have extracting during Terraform completion.
+- Ensure that you have the latest Helm >~ 3.50 installed.
+- Ensure that you have both Cilium and Hubble CLI installed. Version should match the Cilium platform deployment.
 
 ## Deploy cilium
 
@@ -46,3 +48,5 @@ For this demostration we use the [Online Boutique](https://github.com/GoogleClou
 git clone git@github.com:GoogleCloudPlatform/microservices-demo.git
 kubectl apply -f ./microservices-demo/release/kubernetes-manifests.yaml
 ```
+
+### Applying your first Network policy examples
