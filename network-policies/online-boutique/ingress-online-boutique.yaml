@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-frontend-ingress
+spec:
+  tls:
+  - hosts:
+      - boutiqueshop.online
+    secretName: testsecret-tls
+  rules:
+  - host: boutiqueshop.online
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 8080

@@ -1,1 +1,3 @@
 microservices-demo
+*.zip
+cilium-sysdump*

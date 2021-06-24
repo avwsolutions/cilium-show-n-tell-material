@@ -16,7 +16,7 @@ Ensure that you are logged in from the `gcloud CLI` and set your *default projec
 ```
 gcloud auth login
 gcloud auth application-default login
-gcloud config set project my-awesome-project
+gcloud auth application-default login my-awesome-project
 ```
 
 ### Apply Terraform

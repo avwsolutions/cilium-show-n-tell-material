@@ -9,5 +9,5 @@ spec:
   egress:
     - toPorts:
       - ports:
-        - port: "5050"
+        - port: "443"
           protocol: TCP

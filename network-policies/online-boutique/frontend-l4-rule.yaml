@@ -1,0 +1,109 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "frontend-l4-rule"
+  namespace: web
+spec:
+  endpointSelector:
+    matchLabels:
+      app: frontend
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: adservice
+        - matchLabels:
+            app: checkoutservice
+        - matchLabels:
+            app: shippingservice
+        - matchLabels:
+            app: currencyservice
+        - matchLabels:
+            app: productcatalogservice
+        - matchLabels:
+            app: cartservice
+        - matchLabels:
+            app: recommendationservice
+    - fromEndpoints:
+        - matchLabels:
+            app: loadgenerator
+      toPorts:
+        - ports:
+            - port: "8080"
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+    - fromEntities:
+        - world
+        - host
+        - cluster
+  egress:
+    - toEntities:
+        - world
+        - host
+        - cluster
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toCIDRSet:
+        - cidr: 169.254.169.254/32
+    - toFQDNs:
+        - matchPattern: "*.googleapis.com"
+      toPorts:
+        - ports:
+            - port: "443"
+        - ports:
+            - port: "80"
+    - toEndpoints:
+        - matchLabels:
+            app: loadgenerator
+    - toEndpoints:
+        - matchLabels:
+            app: adservice
+      toPorts:
+        - ports:
+            - port: "9555"
+    - toEndpoints:
+        - matchLabels:
+            app: checkoutservice
+      toPorts:
+        - ports:
+            - port: "5050"
+    - toEndpoints:
+        - matchLabels:
+            app: shippingservice
+      toPorts:
+        - ports:
+            - port: "50051"
+    - toEndpoints:
+        - matchLabels:
+            app: currencyservice
+      toPorts:
+        - ports:
+            - port: "7000"
+    - toEndpoints:
+        - matchLabels:
+            app: productcatalogservice
+      toPorts:
+        - ports:
+            - port: "3550"
+    - toEndpoints:
+        - matchLabels:
+            app: cartservice
+      toPorts:
+        - ports:
+            - port: "7070"
+    - toEndpoints:
+        - matchLabels:
+            app: recommendationservice
+      toPorts:
+        - ports:
+            - port: "8080"

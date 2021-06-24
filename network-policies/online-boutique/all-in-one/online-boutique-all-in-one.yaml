@@ -1,0 +1,112 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: online-boutique-all-in-one
+  namespace: web
+spec:
+  endpointSelector:
+    matchLabels:
+      app: frontend
+    matchLabels:
+      app: adservice
+    matchLabels:
+      app: checkoutservice
+    matchLabels:
+      app: currencyservice
+    matchLabels:
+      app: emailservice
+    matchLabels:
+      app: paymentservice
+    matchLabels:
+      app: redis-cart
+    matchLabels:
+      app: cartservice
+    matchLabels:
+      app: productcatalogservice
+    matchLabels:
+      app: shippingservice
+    matchLabels:
+      app: recommendationservice
+    matchLabels:
+      app: loadgenerator
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: frontend
+        - matchLabels:
+            app: adservice
+        - matchLabels:
+            app: checkoutservice
+        - matchLabels:
+            app: currencyservice
+        - matchLabels:
+            app: emailservice
+        - matchLabels:
+            app: paymentservice
+        - matchLabels:
+            app: redis-cart
+        - matchLabels:
+            app: cartservice
+        - matchLabels:
+            app: productcatalogservice
+        - matchLabels:
+            app: shippingservice
+        - matchLabels:
+            app: recommendationservice
+        - matchLabels:
+            app: loadgenerator
+   # - fromEntities:
+   #     - world
+   #   toPorts:
+   #     - ports:
+   #         - port: "80"
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+  egress:
+    - toFQDNs:
+        - matchPattern: "*.googleapis.com"
+      toPorts:
+        - ports:
+            - port: "443"
+        - ports:
+            - port: "80"
+    - toEndpoints:
+        - matchLabels:
+            app: frontend
+        - matchLabels:
+            app: adservice
+        - matchLabels:
+            app: checkoutservice
+        - matchLabels:
+            app: currencyservice
+        - matchLabels:
+            app: emailservice
+        - matchLabels:
+            app: paymentservice
+        - matchLabels:
+            app: redis-cart
+        - matchLabels:
+            app: cartservice
+        - matchLabels:
+            app: productcatalogservice
+        - matchLabels:
+            app: shippingservice
+        - matchLabels:
+            app: recommendationservice
+        - matchLabels:
+            app: loadgenerator
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toCIDRSet:
+        - cidr: 169.254.169.254/32

@@ -1,0 +1,58 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "productcatalogservice-l4-rule"
+  namespace: web
+spec:
+  endpointSelector:
+    matchLabels:
+      app: productcatalogservice
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: frontend
+        - matchLabels:
+            app: checkoutservice
+       # - matchLabels:
+       #     app: recommendationservice
+      toPorts:
+        - ports:
+            - port: "3550"
+    - fromEndpoints:
+        - matchLabels:
+            app: recommendationservice
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toCIDRSet:
+        - cidr: 169.254.169.254/32
+    - toFQDNs:
+        - matchPattern: "*.googleapis.com"
+      toPorts:
+        - ports:
+            - port: "443"
+        - ports:
+            - port: "80"
+    - toEndpoints:
+        - matchLabels:
+            app: frontend
+        - matchLabels:
+            app: checkoutservice
+   #     - matchLabels:
+     #       app: recommendationservice
+    - toEndpoints:
+        - matchLabels:
+            app: recommendationservice
