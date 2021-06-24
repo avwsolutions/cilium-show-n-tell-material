@@ -1,3 +1,4 @@
 microservices-demo
 *.zip
 cilium-sysdump*
+.DS_Store
