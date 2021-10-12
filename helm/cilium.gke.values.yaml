@@ -81,8 +81,10 @@ rollOutCiliumPods: false
 
 # -- Agent container image.
 image:
-  repository: quay.io/cilium/cilium
+  #repository: quay.io/cilium/cilium
+  repository: quay.io/cilium/cilium-dev
   # tag: latest
+  tag: v1.10.2-fix-ipsec-ep-routes@sha256:64c0b108c4e1fe77593e996438105160c94515ba11c9550aa63a820484bd3692
   pullPolicy: Always
   # cilium-digest
   digest: ""
@@ -420,7 +422,7 @@ enableXTSocketFallback: true
 
 encryption:
   # -- Enable transparent network encryption.
-  enabled: false
+  enabled: true
 
   # -- Encryption method. Can be either ipsec or wireguard.
   type: ipsec
@@ -880,6 +882,7 @@ ipv4:
 
 ipv6:
   # -- Enable IPv6 support.
+  # level=warning msg="Waiting for k8s node information" error="required IPv6 PodCIDR not available" subsys=k8s
   enabled: false
 
 ipvlan:

@@ -28,7 +28,7 @@ kubectl apply -f cilium-monitoring.yaml
 Deploy the following `chart` below to activate both `cilium` and `hubble`.
 
 ```
-helm install cilium cilium/cilium --version 1.10.0 \
+helm upgrade --install cilium cilium/cilium --version 1.10.2 \
   --namespace kube-system \
   --set nativeRoutingCIDR=10.24.0.0/14 \
   --values helm/cilium.gke.values.yaml
