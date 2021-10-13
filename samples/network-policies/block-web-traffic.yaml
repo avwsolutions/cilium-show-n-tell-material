@@ -1,0 +1,21 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "block-traffic-outside-cluster"
+  namespace: web
+spec:
+  description: "L7 policy to block all GET methods"
+  endpointSelector:
+    matchLabels:
+      app: frontend
+  ingress:
+    - fromEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
+          rules:
+            http:
+             - method: "GET"
+               path: "/"

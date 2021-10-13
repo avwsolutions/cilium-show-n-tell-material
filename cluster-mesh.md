@@ -6,6 +6,7 @@
 - Ensure that both `PodCIDRs` are not overlapping each other.
 - We strongly suggest to either use `transparant encryption` or other `VPN tunnel` between the clusters to ensure data in transit protection.
 
+## Implementation
 
 To run the Cilium `CLI` commands quickly we store our contexts for both `Kubernetes` clusters as variables.
 

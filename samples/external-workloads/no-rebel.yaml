@@ -1,0 +1,17 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: no-rebel
+  namespace: default
+spec:
+  endpointSelector:
+    matchLabels:
+      io.kubernetes.pod.name: rebel-base
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+        io.kubernetes.pod.name: ana
+  - toPorts:
+    - ports:
+      - port: "80"  
+        protocol: TCP

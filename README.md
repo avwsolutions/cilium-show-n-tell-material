@@ -49,4 +49,18 @@ git clone git@github.com:GoogleCloudPlatform/microservices-demo.git
 kubectl apply -f ./microservices-demo/release/kubernetes-manifests.yaml
 ```
 
-### Applying your first Network policy examples
+### Demostrate how to apply your first Network policy samples
+
+[More here...](network-policies.md)
+
+### Demostrate Transparant Encryption with IPSEC
+
+[More here...](transparant-encryption.md)
+
+### Demostrate ClusterMesh with Load-balancing and Service Discovery
+
+[More here...](cluster-mesh.md)
+
+### BONUS - Demostrate ClusterMesh with suport of External Workloads
+
+[More here...](external-workloads.md)
