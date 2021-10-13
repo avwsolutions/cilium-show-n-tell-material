@@ -79,6 +79,12 @@ cilium connectivity test --context $CONTEXT_1 --multi-cluster $CONTEXT_2
 
 Now that have validated the installation we can start deploying one of the `samples` from the Cilium community, but first let's explain a little bit about these manifests. Use the following guidelines to enable a `global service`. To implement such we have to ensure that *ClusterMesh* services have the `io.cilium/global-service: "true"` annotation set. Optionally you can set the following annotation `io.cilium/shared-service: "false"` to ensure that traffic is only balanced to remote clusters.
 
+Example annotation here 
+
+```
+kubectl annotate service frontend-external io.cilium/global-service="true" -n web
+```
+
 We can now start deploying the sample material.
 
 On `cluster-1` apply the following manifests to activate the sample `nginx` service.
