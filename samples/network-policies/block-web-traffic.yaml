@@ -7,13 +7,14 @@ spec:
   description: "L7 policy to block all GET methods"
   endpointSelector:
     matchLabels:
-      app: frontend
+      app: productcatalogservice
   ingress:
-    - fromEntities:
-        - world
+    - fromEndpoints:
+        - matchLabels:
+            app: froontend
       toPorts:
         - ports:
-            - port: "80"
+            - port: "3550"
               protocol: TCP
           rules:
             http:
