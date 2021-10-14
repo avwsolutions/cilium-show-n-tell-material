@@ -3,3 +3,4 @@ microservices-demo
 cilium-sysdump*
 .DS_Store
 *.dmp
+install-external-workload.sh

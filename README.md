@@ -61,6 +61,6 @@ kubectl apply -f ./microservices-demo/release/kubernetes-manifests.yaml
 
 [More here...](cluster-mesh.md)
 
-### BONUS - Demostrate ClusterMesh with suport of External Workloads
+### BONUS - Demostrate ClusterMesh with support of External Workloads
 
 [More here...](external-workloads.md)

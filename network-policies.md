@@ -37,7 +37,8 @@ k apply -f samples/network-policies/online-boutique/all-in-one/online-boutique-a
 
 Additional we have created a full blown set.
 ```
-samples/network-policies/online-boutique/activate-cilium-network-policies.sh
+cd samples/network-policies/online-boutique
+./activate-cilium-network-policies.sh
 ```
 
 Remove the policies with this script
